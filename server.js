@@ -1,6 +1,7 @@
 var http = require("http");
 var { v4: uuidv4 } = require("uuid");
 var { errorNotFound, errorFormat, errorId } = require("./errorHandle.js");
+var port = process.env.port || 8080
 
 const todos = [];
 const todolistRequest = (req, res) => {
@@ -110,10 +111,6 @@ const todolistRequest = (req, res) => {
 };
 
 const server = http.createServer(todolistRequest);
-server.listen(process.env.port || 8080, () => {
-  if (process.env.port == undefined) {
-    console.log("Server is running on port 8080");
-  } else {
-    console.log(`Server is running on port ${process.env.port}`);
-  }
+server.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
